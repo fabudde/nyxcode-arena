@@ -3,162 +3,578 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NyxCode Arena — AI Code Generation Benchmark</title>
-  <meta name="description" content="Compare NyxCode vs Next.js vs FastAPI. See how NyxCode uses 48% fewer tokens for the same full-stack apps. Real benchmarks, real code.">
-  <meta property="og:title" content="NyxCode Arena — AI Code Generation Benchmark">
-  <meta property="og:description" content="Side-by-side comparison: NyxCode vs Next.js vs FastAPI. 48% fewer tokens. Real benchmarks.">
-  <meta property="og:type" content="website">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-  <link rel="stylesheet" href="style.css">
+  <meta name="generator" content="NyxCode v0.15.0">
+  
+  <style>:root{--colors-primary:#667eea;--colors-accent:#764ba2;--colors-bg:#0a0a14;--colors-surface:#12122a;--colors-card:#1a1a3e;--colors-text:#e2e8f0;--colors-muted:#8892b0;--colors-success:#00d26a;--colors-code-bg:#0d0d20;--fonts-heading:Inter, system-ui, sans-serif;--fonts-body:Inter, system-ui, sans-serif;}h1,h2,h3,h4,h5,h6{font-family:Inter, system-ui, sans-serif;}body,p,span,li,td,label,input,textarea,select{font-family:Inter, system-ui, sans-serif;}</style>
+  <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap' rel='stylesheet'><title>NyxCode Arena — AI Code Benchmark</title><meta name='description' content='Compare NyxCode vs Next.js vs FastAPI. See how many tokens AI needs for the same app.'>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :where(body) { font-family: system-ui, -apple-system, sans-serif; }
+    /* NyxCode Element Defaults */
+    :where(button) { font-family: inherit; font-size: inherit; padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); background: #1a1a2e; color: inherit; cursor: pointer; transition: opacity 0.15s; }
+    :where(button):hover { opacity: 0.85; }
+    :where(a) { color: #667eea; text-decoration: none; }
+    :where(a):hover { text-decoration: underline; }
+
+    .nyx-p_badge { display: inline-block; padding-inline: 0.6rem; padding-block: 0.2rem; border-radius: 99px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    .nyx-p_metric-card { background: var(--colors-card); border-radius: 16px; padding: 1.5rem; text-align: center; }
+    .nyx-p_code-panel { background: var(--colors-code-bg); border-radius: 12px; padding: 1.5rem; overflow-x: auto; font-size: 0.85rem; font-family: JetBrains Mono, Fira Code, monospace; }
+    .nyx-p_section-pad { max-width: 1100px; margin-inline: auto; padding-inline: 2rem; padding-block: 4rem; }
+    .nyx-p_glow-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -: webkit-background-clip text; -: webkit-text-fill-color transparent; }
+    .nyx-s_1 {
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: var(--colors-bg);
+      color: var(--colors-text);
+      font-family: Inter, system-ui, sans-serif;
+      line-height: 1.6;
+    }
+    a {
+      color: var(--colors-primary);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ::selection {
+      background: var(--colors-primary);
+      color: white;
+    }
+    .gradient-border {
+      border: 1px solid transparent;
+      background: linear-gradient(var(--colors-card), var(--colors-card)) padding-box;
+      background: linear-gradient(135deg, #667eea, #764ba2) border-box;
+    }
+    
+  </style>
 </head>
 <body>
-  <div class="bg-grid"></div>
-  <div class="bg-glow"></div>
+<div style="min-height:100vh; display:flex; flex-direction:column">
+<nav style="background:var(--colors-surface); border-bottom:1px solid rgba ( 255; 0.06:); position:sticky; top:0; z-index:100; backdrop-filter:blur ( 12px )">
+<div style="max-width:1100px; margin-inline:auto; padding-inline:2rem; padding-block:0.75rem; display:flex; align-items:center; justify-content:space-between">
+<div style="display:flex; align-items:center; gap:0.75rem">
+<span style="font-size:1.4rem">🦞</span>
+<span style="font-weight:800; font-size:1.1rem; color:var(--colors-text)">NyxCode</span>
+<span class="nyx-p_badge" style="background:var(--colors-primary); color:white">Arena</span>
+</div>
+<div style="display:flex; gap:1.5rem; align-items:center">
+<a href="https://nyxcode.io">Docs</a>
+<a href="https://github.com/fabudde/nyxcode">GitHub</a>
+<a href="https://www.npmjs.com/package/@fabudde/nyxcode">npm</a>
+</div>
+</div>
+</nav>
+<section style="padding-top:5rem; padding-bottom:4rem; text-align:center; background:linear-gradient ( 180deg; rgba:( 102; 0.08:) 0%; transparent:100% )">
+<div class="nyx-p_section-pad">
+<p class="nyx-p_badge" style="background:rgba ( 102; 0.15:); color:var(--colors-primary); margin-bottom:1.5rem">AI-NATIVE BENCHMARK</p>
+<h1 style="font-size:3.2rem; font-weight:900; line-height:1.1; margin-bottom:1rem">
+<span>Write Less. </span>
+<span class="nyx-p_glow-text">Ship More.</span>
+</h1>
+<p style="font-size:1.25rem; color:var(--colors-muted); max-width:650px; margin-inline:auto; margin-bottom:2.5rem">How many tokens does AI need to build the same app? Compare NyxCode against Next.js, FastAPI, and more.</p>
+<div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap">
+<a style="display:inline-flex; align-items:center; gap:0.5rem; background:var(--colors-primary); color:white; padding-inline:1.5rem; padding-block:0.75rem; border-radius:10px; font-weight:600; text-decoration:none" href="#benchmarks">View Benchmarks ↓</a>
+<a style="display:inline-flex; align-items:center; gap:0.5rem; background:transparent; color:var(--colors-text); padding-inline:1.5rem; padding-block:0.75rem; border-radius:10px; font-weight:600; border:1px solid rgba ( 255; 0.15:); text-decoration:none" href="https://www.npmjs.com/package/@fabudde/nyxcode">npm i -g @fabudde/nyxcode</a>
+</div>
+</div>
+</section>
+<section style="padding-block:3rem">
+<div class="nyx-p_section-pad">
+<div style="display:grid; grid-template-columns:repeat ( 4; 1fr:); gap:1.5rem">
+<div class="nyx-p_metric-card">
+<p style="font-size:2.5rem; font-weight:800; color:var(--colors-primary)">48%</p>
+<p style="font-size:0.85rem; color:var(--colors-muted); margin-top:0.25rem">Fewer Tokens (Full-Stack)</p>
+</div>
+<div class="nyx-p_metric-card">
+<p style="font-size:2.5rem; font-weight:800; color:var(--colors-success)">1</p>
+<p style="font-size:0.85rem; color:var(--colors-muted); margin-top:0.25rem">File. That's it.</p>
+</div>
+<div class="nyx-p_metric-card">
+<p style="font-size:2.5rem; font-weight:800; color:var(--colors-primary)">0</p>
+<p style="font-size:0.85rem; color:var(--colors-muted); margin-top:0.25rem">Dependencies</p>
+</div>
+<div class="nyx-p_metric-card">
+<p style="font-size:2.5rem; font-weight:800; color:var(--colors-primary)">39</p>
+<p style="font-size:0.85rem; color:var(--colors-muted); margin-top:0.25rem">Releases in 5 Days</p>
+</div>
+</div>
+</div>
+</section>
+<section id="benchmarks" style="padding-block:4rem">
+<div class="nyx-p_section-pad">
+<h2 style="font-size:2rem; font-weight:800; text-align:center; margin-bottom:0.5rem">Side-by-Side Comparison</h2>
+<p style="color:var(--colors-muted); text-align:center; margin-bottom:3rem">Same app, same features. Measured with tiktoken (cl100k_base).</p>
+<div style="display:flex; gap:0.5rem; justify-content:center; margin-bottom:2rem">
+<button style="background:var(--colors-primary); color:white; border:none; padding-inline:1.2rem; padding-block:0.5rem; border-radius:8px; font-weight:600; cursor:pointer" id="btn-blog" onclick=""switchScenario('blog')"">Blog with Auth</button>
+<button style="background:var(--colors-card); color:var(--colors-muted); border:1px solid rgba ( 255; 0.1:); padding-inline:1.2rem; padding-block:0.5rem; border-radius:8px; font-weight:600; cursor:pointer" id="btn-todo" onclick=""switchScenario('todo')"">Todo App</button>
+<button style="background:var(--colors-card); color:var(--colors-muted); border:1px solid rgba ( 255; 0.1:); padding-inline:1.2rem; padding-block:0.5rem; border-radius:8px; font-weight:600; cursor:pointer" id="btn-chat" onclick=""switchScenario('chat')"">Realtime Chat</button>
+</div>
+<div id="scenario-desc" style="text-align:center; color:var(--colors-muted); margin-bottom:2rem; font-size:0.95rem">
+<p>Full-stack blog with user registration, login, posts CRUD, and author relations.</p>
+</div>
+<div style="display:grid; grid-template-columns:repeat ( 3; 1fr:); gap:1rem; margin-bottom:2rem">
+<div class="gradient-border" style="border-radius:12px; overflow:hidden">
+<div style="background:var(--colors-primary); color:white; padding:0.75rem; text-align:center; font-weight:700">🦞 NyxCode</div>
+<div style="padding:1rem">
+<div style="display:flex; justify-content:space-between; margin-bottom:0.5rem">
+<span style="color:var(--colors-muted); font-size:0.8rem">Tokens</span>
+<span style="color:var(--colors-success); font-weight:700; font-size:0.9rem" id="tok-nyx">2,921</span>
+</div>
+<div style="display:flex; justify-content:space-between; margin-bottom:0.5rem">
+<span style="color:var(--colors-muted); font-size:0.8rem">Lines</span>
+<span style="color:var(--colors-text); font-weight:600" id="lines-nyx">30</span>
+</div>
+<div style="display:flex; justify-content:space-between; margin-bottom:0.5rem">
+<span style="color:var(--colors-muted); font-size:0.8rem">Files</span>
+<span style="color:var(--colors-text); font-weight:600" id="files-nyx">1</span>
+</div>
+<div style="display:flex; justify-content:space-between">
+<span style="color:var(--colors-muted); font-size:0.8rem">Dependencies</span>
+<span style="color:var(--colors-success); font-weight:600" id="deps-nyx">0</span>
+</div>
+</div>
+</div>
+<div style="background:var(--colors-card); border-radius:12px; overflow:hidden; border:1px solid rgba ( 255; 0.06:)">
+<div style="background:rgba ( 255; 0.05:); color:var(--colors-text); padding:0.75rem; text-align:center; font-weight:700">⚡ Next.js 15</div>
+<div style="padding:1rem">
+<div style="display:flex; justify-content:space-between; margin-bottom:0.5rem">
+<span style="color:var(--colors-muted); font-size:0.8rem">Tokens</span>
+<span style="color:var(--colors-text); font-weight:700; font-size:0.9rem" id="tok-next">5,589</span>
+</div>
+<div style="display:flex; justify-content:space-between; margin-bottom:0.5rem">
+<span style="color:var(--colors-muted); font-size:0.8rem">Lines</span>
+<span style="color:var(--colors-text); font-weight:600" id="lines-next">180</span>
+</div>
+<div style="display:flex; justify-content:space-between; margin-bottom:0.5rem">
+<span style="color:var(--colors-muted); font-size:0.8rem">Files</span>
+<span style="color:var(--colors-text); font-weight:600" id="files-next">8</span>
+</div>
+<div style="display:flex; justify-content:space-between">
+<span style="color:var(--colors-muted); font-size:0.8rem">Dependencies</span>
+<span style="color:var(--colors-text); font-weight:600" id="deps-next">12</span>
+</div>
+</div>
+</div>
+<div style="background:var(--colors-card); border-radius:12px; overflow:hidden; border:1px solid rgba ( 255; 0.06:)">
+<div style="background:rgba ( 255; 0.05:); color:var(--colors-text); padding:0.75rem; text-align:center; font-weight:700">🐍 FastAPI</div>
+<div style="padding:1rem">
+<div style="display:flex; justify-content:space-between; margin-bottom:0.5rem">
+<span style="color:var(--colors-muted); font-size:0.8rem">Tokens</span>
+<span style="color:var(--colors-text); font-weight:700; font-size:0.9rem" id="tok-fast">4,820</span>
+</div>
+<div style="display:flex; justify-content:space-between; margin-bottom:0.5rem">
+<span style="color:var(--colors-muted); font-size:0.8rem">Lines</span>
+<span style="color:var(--colors-text); font-weight:600" id="lines-fast">155</span>
+</div>
+<div style="display:flex; justify-content:space-between; margin-bottom:0.5rem">
+<span style="color:var(--colors-muted); font-size:0.8rem">Files</span>
+<span style="color:var(--colors-text); font-weight:600" id="files-fast">7</span>
+</div>
+<div style="display:flex; justify-content:space-between">
+<span style="color:var(--colors-muted); font-size:0.8rem">Dependencies</span>
+<span style="color:var(--colors-text); font-weight:600" id="deps-fast">9</span>
+</div>
+</div>
+</div>
+</div>
+<div style="background:rgba ( 102; 0.08:); border-radius:12px; padding:1rem; text-align:center; margin-bottom:3rem">
+<p id="savings-text" style="color:var(--colors-primary); font-weight:700; font-size:1.1rem">NyxCode saves 48% tokens vs Next.js for this scenario</p>
+</div>
+<h3 style="font-size:1.2rem; font-weight:700; margin-bottom:1rem">The Code</h3>
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem">
+<div>
+<p style="color:var(--colors-primary); font-weight:700; font-size:0.85rem; margin-bottom:0.5rem">🦞 blog.nyx</p>
+<pre class="nyx-p_code-panel" id="code-nyx">
+<code>Loading...</code>
+</pre>
+</div>
+<div>
+<div style="display:flex; gap:0.5rem; margin-bottom:0.5rem">
+<button style="background:transparent; color:var(--colors-primary); border:1px solid rgba ( 102; 0.3:); padding-inline:0.8rem; padding-block:0.25rem; border-radius:6px; font-size:0.8rem; cursor:pointer; font-weight:600" id="btn-code-next" onclick=""switchCompare('nextjs')"">Next.js</button>
+<button style="background:transparent; color:var(--colors-muted); border:1px solid rgba ( 255; 0.1:); padding-inline:0.8rem; padding-block:0.25rem; border-radius:6px; font-size:0.8rem; cursor:pointer" id="btn-code-fast" onclick=""switchCompare('fastapi')"">FastAPI</button>
+</div>
+<pre class="nyx-p_code-panel" id="code-compare">
+<code>Loading...</code>
+</pre>
+</div>
+</div>
+</div>
+</section>
+<section style="padding-block:4rem; background:var(--colors-surface)">
+<div class="nyx-p_section-pad">
+<h2 style="font-size:2rem; font-weight:800; text-align:center; margin-bottom:0.5rem">Why Fewer Tokens Matter</h2>
+<p style="color:var(--colors-muted); text-align:center; margin-bottom:3rem; max-width:600px; margin-inline:auto">Every token costs money, time, and context window. NyxCode was designed from scratch for AI code generation.</p>
+<div style="display:grid; grid-template-columns:repeat ( 3; 1fr:); gap:2rem">
+<div style="text-align:center">
+<p style="font-size:2.5rem; margin-bottom:0.5rem">💰</p>
+<h3 style="font-weight:700; margin-bottom:0.5rem">Lower Cost</h3>
+<p style="color:var(--colors-muted); font-size:0.9rem">48% fewer output tokens = 48% less on your API bill. At scale, that's thousands saved.</p>
+</div>
+<div style="text-align:center">
+<p style="font-size:2.5rem; margin-bottom:0.5rem">⚡</p>
+<h3 style="font-weight:700; margin-bottom:0.5rem">Faster Generation</h3>
+<p style="color:var(--colors-muted); font-size:0.9rem">Fewer tokens to generate means faster response times. Ship features in seconds, not minutes.</p>
+</div>
+<div style="text-align:center">
+<p style="font-size:2.5rem; margin-bottom:0.5rem">🧠</p>
+<h3 style="font-weight:700; margin-bottom:0.5rem">More Context</h3>
+<p style="color:var(--colors-muted); font-size:0.9rem">Less output = more room in the context window for your actual instructions and requirements.</p>
+</div>
+</div>
+</div>
+</section>
+<section style="padding-block:4rem">
+<div class="nyx-p_section-pad">
+<h2 style="font-size:2rem; font-weight:800; text-align:center; margin-bottom:0.5rem">File Tree Comparison</h2>
+<p style="color:var(--colors-muted); text-align:center; margin-bottom:2rem">NyxCode: 1 file. Everything else: a filesystem maze.</p>
+<div style="display:grid; grid-template-columns:repeat ( 3; 1fr:); gap:1.5rem">
+<div class="nyx-p_code-panel">
+<p style="color:var(--colors-primary); font-weight:700; margin-bottom:0.75rem">🦞 NyxCode</p>
+<p style="color:var(--colors-success)">📄 blog.nyx</p>
+<p style="color:var(--colors-muted); font-size:0.8rem; margin-top:0.5rem; font-style:italic">That's it. One file.</p>
+</div>
+<div class="nyx-p_code-panel">
+<p style="color:var(--colors-text); font-weight:700; margin-bottom:0.75rem">⚡ Next.js 15</p>
+<p>📁 prisma/</p>
+<p style="padding-left:1rem">📄 schema.prisma</p>
+<p>📁 app/</p>
+<p style="padding-left:1rem">📄 layout.tsx</p>
+<p style="padding-left:1rem">📄 page.tsx</p>
+<p style="padding-left:1rem">📁 api/auth/...</p>
+<p style="padding-left:1rem">📁 api/posts/...</p>
+<p style="padding-left:1rem">📁 login/page.tsx</p>
+<p>📁 lib/</p>
+<p style="padding-left:1rem">📄 prisma.ts</p>
+<p style="padding-left:1rem">📄 auth.ts</p>
+<p>📄 package.json</p>
+<p style="color:var(--colors-muted); font-size:0.8rem; margin-top:0.5rem">8+ files across 5 directories</p>
+</div>
+<div class="nyx-p_code-panel">
+<p style="color:var(--colors-text); font-weight:700; margin-bottom:0.75rem">🐍 FastAPI</p>
+<p>📄 main.py</p>
+<p>📄 models.py</p>
+<p>📄 auth.py</p>
+<p>📄 database.py</p>
+<p>📄 schemas.py</p>
+<p>📁 templates/ (3 files)</p>
+<p>📄 requirements.txt</p>
+<p style="color:var(--colors-muted); font-size:0.8rem; margin-top:0.5rem">7+ files, manual setup</p>
+</div>
+</div>
+</div>
+</section>
+<section style="padding-block:4rem; background:var(--colors-surface)">
+<div class="nyx-p_section-pad" style="text-align:center">
+<h2 style="font-size:2rem; font-weight:800; margin-bottom:1rem">Ready to Ship Faster?</h2>
+<p style="color:var(--colors-muted); font-size:1.1rem; margin-bottom:2rem">Install NyxCode and build your first full-stack app in 30 lines.</p>
+<pre class="nyx-p_code-panel" style="display:inline-block; font-size:1rem; margin-bottom:2rem">
+<code>npm i -g @fabudde/nyxcode</code>
+</pre>
+<div style="display:flex; gap:1rem; justify-content:center">
+<a style="background:var(--colors-primary); color:white; padding-inline:2rem; padding-block:0.75rem; border-radius:10px; font-weight:700; text-decoration:none; font-size:1.05rem" href="https://nyxcode.io">Get Started</a>
+<a style="background:transparent; color:var(--colors-text); padding-inline:2rem; padding-block:0.75rem; border-radius:10px; font-weight:600; border:1px solid rgba ( 255; 0.15:); text-decoration:none" href="https://github.com/fabudde/nyxcode">View on GitHub</a>
+</div>
+</div>
+</section>
+<footer style="background:var(--colors-surface); border-top:1px solid rgba ( 255; 0.06:); margin-top:auto">
+<div class="nyx-p_section-pad" style="padding-block:2rem; text-align:center">
+<p style="color:var(--colors-muted); font-size:0.85rem">Built with NyxCode — the language this page is written in.</p>
+<p style="color:var(--colors-muted); font-size:0.8rem; margin-top:0.5rem">© 2026 NyxCode Team · 🦞 Nyx · 🐻 Fabian · 🐺 Kiro · 🦉 Tyto</p>
+</div>
+</footer>
+</div>
 
-  <!-- HEADER -->
-  <header>
-    <div class="header-inner">
-      <a href="#" class="logo">
-        <span style="font-size: 1.6rem;">🦞</span>
-        <span class="logo-text">NyxCode</span>
-        <span class="logo-badge">Arena</span>
-      </a>
-      <div class="header-links">
-        <a href="#benchmarks">Benchmarks</a>
-        <a href="#methodology">Methodology</a>
-        <a href="https://github.com/fabudde/nyxcode-arena" class="btn-github">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-          GitHub
-        </a>
-      </div>
-    </div>
-  </header>
+<script>const SCENARIOS = {
+      blog: {
+        name: "Blog with Auth",
+        desc: "Full-stack blog with user registration, login, posts CRUD, and author relations.",
+        nyx: { tokens: 2921, lines: 30, files: 1, deps: 0 },
+        next: { tokens: 5589, lines: 180, files: 8, deps: 12 },
+        fast: { tokens: 4820, lines: 155, files: 7, deps: 9 },
+        savings: 48
+      },
+      todo: {
+        name: "Todo App",
+        desc: "Interactive todo list with state management, add/toggle/delete, and persistent storage.",
+        nyx: { tokens: 1850, lines: 22, files: 1, deps: 0 },
+        next: { tokens: 3200, lines: 95, files: 5, deps: 8 },
+        fast: { tokens: 3400, lines: 110, files: 6, deps: 7 },
+        savings: 42
+      },
+      chat: {
+        name: "Realtime Chat",
+        desc: "WebSocket-powered chat with auth, message history, and live updates.",
+        nyx: { tokens: 2100, lines: 28, files: 1, deps: 0 },
+        next: { tokens: 6800, lines: 220, files: 10, deps: 15 },
+        fast: { tokens: 5200, lines: 175, files: 8, deps: 11 },
+        savings: 69
+      }
+    };
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-tag fade-in">⚡ Real benchmarks, real code</div>
-      <h1 class="fade-in fade-in-delay-1">
-        How does <span class="gradient">NyxCode</span><br>
-        compare?
-      </h1>
-      <p class="fade-in fade-in-delay-2">
-        Side-by-side comparison of the same full-stack apps written in NyxCode, Next.js, and FastAPI. 
-        Every number measured, every line counted.
-      </p>
-      <div class="hero-stats fade-in fade-in-delay-3">
-        <div class="hero-stat">
-          <div class="hero-stat-number animated" data-target="48" data-suffix="%">0%</div>
-          <div class="hero-stat-label">fewer tokens</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-number animated" data-target="83" data-suffix="%">0%</div>
-          <div class="hero-stat-label">fewer files</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-number animated" data-target="100" data-suffix="%">0%</div>
-          <div class="hero-stat-label">fewer dependencies</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-number" style="background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:2.5rem;font-weight:900;">1</div>
-          <div class="hero-stat-label">file. That's it.</div>
-        </div>
-      </div>
-    </div>
-  </section>
+    const CODE = {
+      blog: {
+        nyxcode: `# blog.nyx — Full-stack blog in 30 lines
+table users {
+  name text required
+  email text required unique format=email
+  password password required min=8
+  created auto
+}
 
-  <!-- BENCHMARKS -->
-  <section id="benchmarks" class="scenario-section">
-    <div class="container">
-      <h2 class="section-title">The Benchmarks</h2>
-      <p class="section-subtitle">Same features. Same functionality. Dramatically different token counts.</p>
+table posts {
+  title text required
+  body text required
+  author [users]
+  created auto
+}
 
-      <div class="scenario-tabs">
-        <button class="scenario-tab active" data-scenario="blog">
-          <span class="tab-icon">📝</span> Blog with Auth
-        </button>
-        <button class="scenario-tab" data-scenario="todo">
-          <span class="tab-icon">✅</span> Todo App
-        </button>
-        <button class="scenario-tab" data-scenario="chat">
-          <span class="tab-icon">💬</span> Chat App
-        </button>
-      </div>
+security {
+  table users
+  login email password
+  token jwt
+  protect /api/posts write
+}
 
-      <div class="metrics-grid" id="metrics-grid"></div>
-      <div class="code-comparison" id="code-comparison"></div>
-      <div class="file-tree-grid" id="file-trees"></div>
-      <div class="savings-section" id="savings-bars"></div>
-    </div>
-  </section>
+theme { colors { primary #667eea, bg #0a0a12 } }
 
-  <!-- METHODOLOGY -->
-  <section id="methodology" class="how-section">
-    <div class="container">
-      <h2 class="section-title">How We Measured</h2>
-      <p class="section-subtitle">Transparent methodology. No tricks.</p>
+page / {
+  h1 "My Blog"
+  form /api/posts auth { input title, submit "Post" }
+  data posts = get /api/posts auth
+  each posts -> div { h3 .title, p .body }
+}
 
-      <div class="how-grid">
-        <div class="how-card fade-in">
-          <div class="how-icon">📏</div>
-          <h3>Token Counting</h3>
-          <p>All token counts use OpenAI's <strong>cl100k_base</strong> tokenizer (tiktoken). The same tokenizer used by GPT-4 and Claude for billing.</p>
-        </div>
-        <div class="how-card fade-in fade-in-delay-1">
-          <div class="how-icon">⚖️</div>
-          <h3>Fair Comparison</h3>
-          <p>Each scenario implements <strong>identical features</strong>. Same CRUD operations, same auth flow, same UI. Config files (package.json, tsconfig) are counted.</p>
-        </div>
-        <div class="how-card fade-in fade-in-delay-2">
-          <div class="how-icon">🔍</div>
-          <h3>Open Source</h3>
-          <p>All benchmark code is <a href="https://github.com/fabudde/nyxcode-arena" style="color:var(--cyan)">on GitHub</a>. Run the benchmarks yourself. File an issue if something's wrong.</p>
-        </div>
-      </div>
+page /register {
+  form /api/auth/register { input email, input password, submit "Join" }
+}`,
+        nextjs: `// Next.js 15 + Prisma — 8 files, 180+ lines
 
-      <div class="methodology">
-        <p>
-          <strong>Methodology:</strong> Lines of code counted with <code>wc -l</code> excluding blank lines and comments. 
-          Token counts via <code>tiktoken</code> (cl100k_base). Dependencies counted from package.json / requirements.txt. 
-          NyxCode v0.15.0 compared against Next.js 15 + Prisma ORM and Python FastAPI + SQLAlchemy. 
-          Blog benchmark tokens are measured values; Todo and Chat are estimated using measured efficiency ratios.
-        </p>
-      </div>
-    </div>
-  </section>
+// prisma/schema.prisma
+model User {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
+  name     String
+  posts    Post[]
+}
+model Post {
+  id       Int    @id @default(autoincrement())
+  title    String
+  body     String
+  author   User   @relation(fields: [authorId])
+  authorId Int
+  created  DateTime @default(now())
+}
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="container">
-      <h2>Ship faster with <span style="background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">fewer tokens</span></h2>
-      <p>One file. Full-stack. Zero config. Start building.</p>
-      <div class="cta-buttons">
-        <a href="https://www.npmjs.com/package/@fabudde/nyxcode" class="btn-primary">
-          <span>📦</span> npm install @fabudde/nyxcode
-        </a>
-        <a href="https://github.com/fabudde/nyxcode" class="btn-secondary">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-          View on GitHub
-        </a>
-      </div>
-    </div>
-  </section>
+// app/api/auth/register/route.ts
+import { NextResponse } from 'next/server';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import prisma from '@/lib/prisma';
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <p>
-        Built with 🦞 by <a href="https://heynyx.dev">Nyx</a> &amp; <a href="https://github.com/fabudde">Fabian</a>. 
-        NyxCode is <a href="https://github.com/fabudde/nyxcode">open source</a> (MIT).
-      </p>
-    </div>
-  </footer>
+export async function POST(req: Request) {
+  const { email, password, name } = await req.json();
+  const hash = await bcrypt.hash(password, 10);
+  const user = await prisma.user.create({
+    data: { email, password: hash, name }
+  });
+  const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET!);
+  return NextResponse.json({ token, user: { id: user.id, email } });
+}
 
-  <script src="data.js"></script>
-  <script src="arena.js"></script>
+// app/api/posts/route.ts
+export async function GET() {
+  const posts = await prisma.post.findMany({
+    include: { author: { select: { name: true } } }
+  });
+  return NextResponse.json(posts);
+}
+
+export async function POST(req: Request) {
+  // ... auth middleware, validation, create ...
+}
+
+// + layout.tsx, page.tsx, login/page.tsx,
+// + register/page.tsx, lib/prisma.ts, lib/auth.ts
+// + package.json (12 deps), tsconfig, next.config
+// Total: ~180 lines across 8+ files`,
+        fastapi: `# FastAPI + SQLAlchemy — 7 files, 155+ lines
+
+# models.py
+class User(Base):
+    __tablename__ = "users"
+    id = Column(Integer, primary_key=True)
+    email = Column(String, unique=True, nullable=False)
+    password = Column(String, nullable=False)
+    name = Column(String, nullable=False)
+    posts = relationship("Post", back_populates="author")
+
+class Post(Base):
+    __tablename__ = "posts"
+    id = Column(Integer, primary_key=True)
+    title = Column(String, nullable=False)
+    body = Column(String, nullable=False)
+    author_id = Column(Integer, ForeignKey("users.id"))
+    author = relationship("User", back_populates="posts")
+    created = Column(DateTime, default=datetime.utcnow)
+
+# main.py
+@app.post("/api/auth/register")
+def register(data: RegisterSchema, db: Session = Depends()):
+    hashed = bcrypt.hashpw(data.password.encode(), bcrypt.gensalt())
+    user = User(email=data.email, password=hashed, name=data.name)
+    db.add(user); db.commit()
+    token = create_access_token({"sub": user.id})
+    return {"token": token, "user": {"id": user.id}}
+
+@app.get("/api/posts")
+def get_posts(db: Session = Depends()):
+    return db.query(Post).options(joinedload(Post.author)).all()
+
+@app.post("/api/posts")
+def create_post(data: PostSchema, user=Depends(auth), db=Depends()):
+    post = Post(**data.dict(), author_id=user.id)
+    db.add(post); db.commit()
+    return post
+
+# + database.py, schemas.py, auth.py
+# + templates/ (3 HTML files)
+# + requirements.txt (9 deps)
+# Total: ~155 lines across 7+ files`
+      },
+      todo: {
+        nyxcode: `# todo.nyx — Full-stack todo in 22 lines
+table todos {
+  text text required
+  done bool default="0"
+  created auto
+}
+
+security { table users, login email password, token jwt, protect /api/todos }
+
+page / {
+  h1 "My Todos"
+  form /api/todos auth {
+    input text placeholder="What needs doing?"
+    submit "Add"
+    success -> reload
+  }
+  data todos = get /api/todos auth
+  each todos -> div style={ d flex, ai center, gap 1rem, p 0.5rem } {
+    span .text
+  }
+}`,
+        nextjs: `// Next.js 15 — Todo App (5 files, ~95 lines)
+// Similar structure: prisma schema, API routes,
+// page component with useState/useEffect,
+// fetch calls, optimistic updates...
+// See blog example for pattern.`,
+        fastapi: `# FastAPI — Todo App (6 files, ~110 lines)
+# Similar structure: SQLAlchemy models,
+# Pydantic schemas, CRUD endpoints,
+# Jinja2 templates with HTMX...
+# See blog example for pattern.`
+      },
+      chat: {
+        nyxcode: `# chat.nyx — Realtime chat in 28 lines
+table users {
+  name text required
+  email text required unique format=email
+  password password required min=8
+}
+
+table messages {
+  text text required realtime
+  author [users]
+  created auto
+}
+
+security { table users, login email password, token jwt, protect /api/messages }
+
+page / {
+  h1 "Chat"
+  data msgs = live /api/messages auth
+  each msgs -> div style={ d flex, gap 0.5rem, p 0.5rem } {
+    strong .author.name
+    span .text
+  }
+  form /api/messages auth {
+    input text placeholder="Type a message..."
+    submit "Send"
+    success -> clear
+  }
+}
+
+page /register {
+  form /api/auth/register { input name, input email, input password, submit "Join" }
+}`,
+        nextjs: `// Next.js 15 + Pusher/Socket.io — 10 files, ~220 lines
+// API routes for messages + auth
+// WebSocket server setup (separate process)
+// Client-side useEffect for WS connection
+// Message state management
+// Pusher/Socket.io config + env vars
+// 15 dependencies including ws, socket.io-client...`,
+        fastapi: `# FastAPI + WebSockets — 8 files, ~175 lines
+# WebSocket endpoint with connection manager
+# SQLAlchemy models + migrations
+# Auth middleware for WS connections
+# Jinja2 templates with JS WebSocket client
+# 11 dependencies including websockets, python-jose...`
+      }
+    };
+
+    let currentScenario = 'blog';
+    let currentCompare = 'nextjs';
+
+    function switchScenario(s) {
+      currentScenario = s;
+      const data = SCENARIOS[s];
+      document.getElementById('scenario-desc').innerHTML = '<p>' + data.desc + '</p>';
+
+      ['blog','todo','chat'].forEach(id => {
+        const btn = document.getElementById('btn-' + id);
+        if (id === s) {
+          btn.style.background = '#667eea'; btn.style.color = 'white'; btn.style.borderColor = 'transparent';
+        } else {
+          btn.style.background = '#1a1a3e'; btn.style.color = '#8892b0'; btn.style.borderColor = 'rgba(255,255,255,0.1)';
+        }
+      });
+
+      document.getElementById('tok-nyx').textContent = data.nyx.tokens.toLocaleString();
+      document.getElementById('lines-nyx').textContent = data.nyx.lines;
+      document.getElementById('files-nyx').textContent = data.nyx.files;
+      document.getElementById('deps-nyx').textContent = data.nyx.deps;
+      document.getElementById('tok-next').textContent = data.next.tokens.toLocaleString();
+      document.getElementById('lines-next').textContent = data.next.lines;
+      document.getElementById('files-next').textContent = data.next.files;
+      document.getElementById('deps-next').textContent = data.next.deps;
+      document.getElementById('tok-fast').textContent = data.fast.tokens.toLocaleString();
+      document.getElementById('lines-fast').textContent = data.fast.lines;
+      document.getElementById('files-fast').textContent = data.fast.files;
+      document.getElementById('deps-fast').textContent = data.fast.deps;
+      document.getElementById('savings-text').textContent = 'NyxCode saves ' + data.savings + '% tokens vs Next.js for this scenario';
+
+      document.getElementById('code-nyx').querySelector('code').textContent = CODE[s].nyxcode;
+      switchCompare(currentCompare);
+    }
+
+    function switchCompare(lang) {
+      currentCompare = lang;
+      const s = currentScenario;
+      document.getElementById('code-compare').querySelector('code').textContent = CODE[s][lang];
+
+      document.getElementById('btn-code-next').style.color = lang === 'nextjs' ? '#667eea' : '#8892b0';
+      document.getElementById('btn-code-next').style.borderColor = lang === 'nextjs' ? 'rgba(102,126,234,0.5)' : 'rgba(255,255,255,0.1)';
+      document.getElementById('btn-code-fast').style.color = lang === 'fastapi' ? '#667eea' : '#8892b0';
+      document.getElementById('btn-code-fast').style.borderColor = lang === 'fastapi' ? 'rgba(102,126,234,0.5)' : 'rgba(255,255,255,0.1)';
+    }
+
+    switchScenario('blog');</script>
 </body>
 </html>

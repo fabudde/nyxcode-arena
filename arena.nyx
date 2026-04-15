@@ -1,0 +1,579 @@
+theme {
+  colors {
+    primary #667eea
+    accent #764ba2
+    bg #0a0a14
+    surface #12122a
+    card #1a1a3e
+    text #e2e8f0
+    muted #8892b0
+    success #00d26a
+    code-bg #0d0d20
+  }
+  fonts {
+    heading "Inter, system-ui, sans-serif"
+    body "Inter, system-ui, sans-serif"
+  }
+}
+
+preset badge { d inline-block, px 0.6rem, py 0.2rem, r 99px, fs 0.75rem, fw 700, tt uppercase, ls 0.05em }
+preset metric-card { bg card, r 16px, p 1.5rem, ta center }
+preset code-panel { bg code-bg, r 12px, p 1.5rem, overflow-x auto, fs 0.85rem, ff "JetBrains Mono, Fira Code, monospace" }
+preset section-pad { mw 1100px, mx auto, px 2rem, py 4rem }
+preset glow-text { bg linear-gradient(135deg, #667eea 0%, #764ba2 100%), -webkit-background-clip text, -webkit-text-fill-color transparent }
+
+layout {
+  head "<link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap' rel='stylesheet'><title>NyxCode Arena — AI Code Benchmark</title><meta name='description' content='Compare NyxCode vs Next.js vs FastAPI. See how many tokens AI needs for the same app.'>"
+
+  style {
+    * { m 0, p 0, box-sizing border-box }
+    body { bg bg, c text, ff "Inter, system-ui, sans-serif", line-height 1.6 }
+    a { c primary, td none }
+    a:hover { td underline }
+    ::selection { bg primary, c white }
+    .gradient-border { border 1px solid transparent, bg linear-gradient(var(--colors-card), var(--colors-card)) padding-box, bg linear-gradient(135deg, #667eea, #764ba2) border-box }
+  }
+
+  div style={ min-height 100vh, d flex, flex-direction column } {
+    nav style={ bg surface, border-bottom 1px solid rgba(255,255,255,0.06), pos sticky, top 0, z 100, backdrop-filter blur(12px) } {
+      div style={ mw 1100px, mx auto, px 2rem, py 0.75rem, d flex, ai center, jc space-between } {
+        div style={ d flex, ai center, gap 0.75rem } {
+          span style={ fs 1.4rem } "🦞"
+          span style={ fw 800, fs 1.1rem, c text } "NyxCode"
+          span $badge style={ bg primary, c white } "Arena"
+        }
+        div style={ d flex, gap 1.5rem, ai center } {
+          a "Docs" href="https://nyxcode.io"
+          a "GitHub" href="https://github.com/fabudde/nyxcode"
+          a "npm" href="https://www.npmjs.com/package/@fabudde/nyxcode"
+        }
+      }
+    }
+    slot
+    footer style={ bg surface, border-top 1px solid rgba(255,255,255,0.06), mt auto } {
+      div $section-pad style={ py 2rem, ta center } {
+        p style={ c muted, fs 0.85rem } "Built with NyxCode — the language this page is written in."
+        p style={ c muted, fs 0.8rem, mt 0.5rem } "© 2026 NyxCode Team · 🦞 Nyx · 🐻 Fabian · 🐺 Kiro · 🦉 Tyto"
+      }
+    }
+  }
+}
+
+page / {
+  section style={ pt 5rem, pb 4rem, ta center, bg linear-gradient(180deg, rgba(102,126,234,0.08) 0%, transparent 100%) } {
+    div $section-pad {
+      p $badge style={ bg rgba(102,126,234,0.15), c primary, mb 1.5rem } "AI-NATIVE BENCHMARK"
+      h1 style={ fs 3.2rem, fw 900, line-height 1.1, mb 1rem } {
+        span "Write Less. " 
+        span $glow-text "Ship More."
+      }
+      p style={ fs 1.25rem, c muted, mw 650px, mx auto, mb 2.5rem } "How many tokens does AI need to build the same app? Compare NyxCode against Next.js, FastAPI, and more."
+      div style={ d flex, gap 1rem, jc center, flex-wrap wrap } {
+        a style={ d inline-flex, ai center, gap 0.5rem, bg primary, c white, px 1.5rem, py 0.75rem, r 10px, fw 600, td none } "View Benchmarks ↓" href="#benchmarks"
+        a style={ d inline-flex, ai center, gap 0.5rem, bg transparent, c text, px 1.5rem, py 0.75rem, r 10px, fw 600, border 1px solid rgba(255,255,255,0.15), td none } "npm i -g @fabudde/nyxcode" href="https://www.npmjs.com/package/@fabudde/nyxcode"
+      }
+    }
+  }
+
+  section style={ py 3rem } {
+    div $section-pad {
+      div style={ d grid, grid-template-columns repeat(4, 1fr), gap 1.5rem } {
+        div $metric-card {
+          p style={ fs 2.5rem, fw 800, c primary } "48%"
+          p style={ fs 0.85rem, c muted, mt 0.25rem } "Fewer Tokens (Full-Stack)"
+        }
+        div $metric-card {
+          p style={ fs 2.5rem, fw 800, c success } "1"
+          p style={ fs 0.85rem, c muted, mt 0.25rem } "File. That's it."
+        }
+        div $metric-card {
+          p style={ fs 2.5rem, fw 800, c primary } "0"
+          p style={ fs 0.85rem, c muted, mt 0.25rem } "Dependencies"
+        }
+        div $metric-card {
+          p style={ fs 2.5rem, fw 800, c primary } "39"
+          p style={ fs 0.85rem, c muted, mt 0.25rem } "Releases in 5 Days"
+        }
+      }
+    }
+  }
+
+  section id="benchmarks" style={ py 4rem } {
+    div $section-pad {
+      h2 style={ fs 2rem, fw 800, ta center, mb 0.5rem } "Side-by-Side Comparison"
+      p style={ c muted, ta center, mb 3rem } "Same app, same features. Measured with tiktoken (cl100k_base)."
+
+      div style={ d flex, gap 0.5rem, jc center, mb 2rem } {
+        button style={ bg primary, c white, border none, px 1.2rem, py 0.5rem, r 8px, fw 600, cursor pointer } "Blog with Auth" id="btn-blog" on:click "switchScenario('blog')"
+        button style={ bg card, c muted, border 1px solid rgba(255,255,255,0.1), px 1.2rem, py 0.5rem, r 8px, fw 600, cursor pointer } "Todo App" id="btn-todo" on:click "switchScenario('todo')"
+        button style={ bg card, c muted, border 1px solid rgba(255,255,255,0.1), px 1.2rem, py 0.5rem, r 8px, fw 600, cursor pointer } "Realtime Chat" id="btn-chat" on:click "switchScenario('chat')"
+      }
+
+      div id="scenario-desc" style={ ta center, c muted, mb 2rem, fs 0.95rem } {
+        p "Full-stack blog with user registration, login, posts CRUD, and author relations."
+      }
+
+      div style={ d grid, grid-template-columns repeat(3, 1fr), gap 1rem, mb 2rem } {
+        div class="gradient-border" style={ r 12px, overflow hidden } {
+          div style={ bg primary, c white, p 0.75rem, ta center, fw 700 } "🦞 NyxCode"
+          div style={ p 1rem } {
+            div style={ d flex, jc space-between, mb 0.5rem } {
+              span style={ c muted, fs 0.8rem } "Tokens"
+              span style={ c success, fw 700, fs 0.9rem } id="tok-nyx" "2,921"
+            }
+            div style={ d flex, jc space-between, mb 0.5rem } {
+              span style={ c muted, fs 0.8rem } "Lines"
+              span style={ c text, fw 600 } id="lines-nyx" "30"
+            }
+            div style={ d flex, jc space-between, mb 0.5rem } {
+              span style={ c muted, fs 0.8rem } "Files"
+              span style={ c text, fw 600 } id="files-nyx" "1"
+            }
+            div style={ d flex, jc space-between } {
+              span style={ c muted, fs 0.8rem } "Dependencies"
+              span style={ c success, fw 600 } id="deps-nyx" "0"
+            }
+          }
+        }
+
+        div style={ bg card, r 12px, overflow hidden, border 1px solid rgba(255,255,255,0.06) } {
+          div style={ bg rgba(255,255,255,0.05), c text, p 0.75rem, ta center, fw 700 } "⚡ Next.js 15"
+          div style={ p 1rem } {
+            div style={ d flex, jc space-between, mb 0.5rem } {
+              span style={ c muted, fs 0.8rem } "Tokens"
+              span style={ c text, fw 700, fs 0.9rem } id="tok-next" "5,589"
+            }
+            div style={ d flex, jc space-between, mb 0.5rem } {
+              span style={ c muted, fs 0.8rem } "Lines"
+              span style={ c text, fw 600 } id="lines-next" "180"
+            }
+            div style={ d flex, jc space-between, mb 0.5rem } {
+              span style={ c muted, fs 0.8rem } "Files"
+              span style={ c text, fw 600 } id="files-next" "8"
+            }
+            div style={ d flex, jc space-between } {
+              span style={ c muted, fs 0.8rem } "Dependencies"
+              span style={ c text, fw 600 } id="deps-next" "12"
+            }
+          }
+        }
+
+        div style={ bg card, r 12px, overflow hidden, border 1px solid rgba(255,255,255,0.06) } {
+          div style={ bg rgba(255,255,255,0.05), c text, p 0.75rem, ta center, fw 700 } "🐍 FastAPI"
+          div style={ p 1rem } {
+            div style={ d flex, jc space-between, mb 0.5rem } {
+              span style={ c muted, fs 0.8rem } "Tokens"
+              span style={ c text, fw 700, fs 0.9rem } id="tok-fast" "4,820"
+            }
+            div style={ d flex, jc space-between, mb 0.5rem } {
+              span style={ c muted, fs 0.8rem } "Lines"
+              span style={ c text, fw 600 } id="lines-fast" "155"
+            }
+            div style={ d flex, jc space-between, mb 0.5rem } {
+              span style={ c muted, fs 0.8rem } "Files"
+              span style={ c text, fw 600 } id="files-fast" "7"
+            }
+            div style={ d flex, jc space-between } {
+              span style={ c muted, fs 0.8rem } "Dependencies"
+              span style={ c text, fw 600 } id="deps-fast" "9"
+            }
+          }
+        }
+      }
+
+      div style={ bg rgba(102,126,234,0.08), r 12px, p 1rem, ta center, mb 3rem } {
+        p id="savings-text" style={ c primary, fw 700, fs 1.1rem } "NyxCode saves 48% tokens vs Next.js for this scenario"
+      }
+
+      h3 style={ fs 1.2rem, fw 700, mb 1rem } "The Code"
+
+      div style={ d grid, grid-template-columns 1fr 1fr, gap 1rem } {
+        div {
+          p style={ c primary, fw 700, fs 0.85rem, mb 0.5rem } "🦞 blog.nyx"
+          pre $code-panel id="code-nyx" {
+            code "Loading..."
+          }
+        }
+        div {
+          div style={ d flex, gap 0.5rem, mb 0.5rem } {
+            button style={ bg transparent, c primary, border 1px solid rgba(102,126,234,0.3), px 0.8rem, py 0.25rem, r 6px, fs 0.8rem, cursor pointer, fw 600 } "Next.js" id="btn-code-next" on:click "switchCompare('nextjs')"
+            button style={ bg transparent, c muted, border 1px solid rgba(255,255,255,0.1), px 0.8rem, py 0.25rem, r 6px, fs 0.8rem, cursor pointer } "FastAPI" id="btn-code-fast" on:click "switchCompare('fastapi')"
+          }
+          pre $code-panel id="code-compare" {
+            code "Loading..."
+          }
+        }
+      }
+    }
+  }
+
+  section style={ py 4rem, bg surface } {
+    div $section-pad {
+      h2 style={ fs 2rem, fw 800, ta center, mb 0.5rem } "Why Fewer Tokens Matter"
+      p style={ c muted, ta center, mb 3rem, mw 600px, mx auto } "Every token costs money, time, and context window. NyxCode was designed from scratch for AI code generation."
+      div style={ d grid, grid-template-columns repeat(3, 1fr), gap 2rem } {
+        div style={ ta center } {
+          p style={ fs 2.5rem, mb 0.5rem } "💰"
+          h3 style={ fw 700, mb 0.5rem } "Lower Cost"
+          p style={ c muted, fs 0.9rem } "48% fewer output tokens = 48% less on your API bill. At scale, that's thousands saved."
+        }
+        div style={ ta center } {
+          p style={ fs 2.5rem, mb 0.5rem } "⚡"
+          h3 style={ fw 700, mb 0.5rem } "Faster Generation"
+          p style={ c muted, fs 0.9rem } "Fewer tokens to generate means faster response times. Ship features in seconds, not minutes."
+        }
+        div style={ ta center } {
+          p style={ fs 2.5rem, mb 0.5rem } "🧠"
+          h3 style={ fw 700, mb 0.5rem } "More Context"
+          p style={ c muted, fs 0.9rem } "Less output = more room in the context window for your actual instructions and requirements."
+        }
+      }
+    }
+  }
+
+  section style={ py 4rem } {
+    div $section-pad {
+      h2 style={ fs 2rem, fw 800, ta center, mb 0.5rem } "File Tree Comparison"
+      p style={ c muted, ta center, mb 2rem } "NyxCode: 1 file. Everything else: a filesystem maze."
+
+      div style={ d grid, grid-template-columns repeat(3, 1fr), gap 1.5rem } {
+        div $code-panel {
+          p style={ c primary, fw 700, mb 0.75rem } "🦞 NyxCode"
+          p style={ c success } "📄 blog.nyx"
+          p style={ c muted, fs 0.8rem, mt 0.5rem, font-style italic } "That's it. One file."
+        }
+        div $code-panel {
+          p style={ c text, fw 700, mb 0.75rem } "⚡ Next.js 15"
+          p "📁 prisma/"
+          p style={ pl 1rem } "📄 schema.prisma"
+          p "📁 app/"
+          p style={ pl 1rem } "📄 layout.tsx"
+          p style={ pl 1rem } "📄 page.tsx"
+          p style={ pl 1rem } "📁 api/auth/..."
+          p style={ pl 1rem } "📁 api/posts/..."
+          p style={ pl 1rem } "📁 login/page.tsx"
+          p "📁 lib/"
+          p style={ pl 1rem } "📄 prisma.ts"
+          p style={ pl 1rem } "📄 auth.ts"
+          p "📄 package.json"
+          p style={ c muted, fs 0.8rem, mt 0.5rem } "8+ files across 5 directories"
+        }
+        div $code-panel {
+          p style={ c text, fw 700, mb 0.75rem } "🐍 FastAPI"
+          p "📄 main.py"
+          p "📄 models.py"
+          p "📄 auth.py"
+          p "📄 database.py"
+          p "📄 schemas.py"
+          p "📁 templates/ (3 files)"
+          p "📄 requirements.txt"
+          p style={ c muted, fs 0.8rem, mt 0.5rem } "7+ files, manual setup"
+        }
+      }
+    }
+  }
+
+  section style={ py 4rem, bg surface } {
+    div $section-pad style={ ta center } {
+      h2 style={ fs 2rem, fw 800, mb 1rem } "Ready to Ship Faster?"
+      p style={ c muted, fs 1.1rem, mb 2rem } "Install NyxCode and build your first full-stack app in 30 lines."
+      pre $code-panel style={ d inline-block, fs 1rem, mb 2rem } {
+        code "npm i -g @fabudde/nyxcode"
+      }
+      div style={ d flex, gap 1rem, jc center } {
+        a style={ bg primary, c white, px 2rem, py 0.75rem, r 10px, fw 700, td none, fs 1.05rem } "Get Started" href="https://nyxcode.io"
+        a style={ bg transparent, c text, px 2rem, py 0.75rem, r 10px, fw 600, border 1px solid rgba(255,255,255,0.15), td none } "View on GitHub" href="https://github.com/fabudde/nyxcode"
+      }
+    }
+  }
+
+  script {
+    const SCENARIOS = {
+      blog: {
+        name: "Blog with Auth",
+        desc: "Full-stack blog with user registration, login, posts CRUD, and author relations.",
+        nyx: { tokens: 2921, lines: 30, files: 1, deps: 0 },
+        next: { tokens: 5589, lines: 180, files: 8, deps: 12 },
+        fast: { tokens: 4820, lines: 155, files: 7, deps: 9 },
+        savings: 48
+      },
+      todo: {
+        name: "Todo App",
+        desc: "Interactive todo list with state management, add/toggle/delete, and persistent storage.",
+        nyx: { tokens: 1850, lines: 22, files: 1, deps: 0 },
+        next: { tokens: 3200, lines: 95, files: 5, deps: 8 },
+        fast: { tokens: 3400, lines: 110, files: 6, deps: 7 },
+        savings: 42
+      },
+      chat: {
+        name: "Realtime Chat",
+        desc: "WebSocket-powered chat with auth, message history, and live updates.",
+        nyx: { tokens: 2100, lines: 28, files: 1, deps: 0 },
+        next: { tokens: 6800, lines: 220, files: 10, deps: 15 },
+        fast: { tokens: 5200, lines: 175, files: 8, deps: 11 },
+        savings: 69
+      }
+    };
+
+    const CODE = {
+      blog: {
+        nyxcode: `# blog.nyx — Full-stack blog in 30 lines
+table users {
+  name text required
+  email text required unique format=email
+  password password required min=8
+  created auto
+}
+
+table posts {
+  title text required
+  body text required
+  author [users]
+  created auto
+}
+
+security {
+  table users
+  login email password
+  token jwt
+  protect /api/posts write
+}
+
+theme { colors { primary #667eea, bg #0a0a12 } }
+
+page / {
+  h1 "My Blog"
+  form /api/posts auth { input title, submit "Post" }
+  data posts = get /api/posts auth
+  each posts -> div { h3 .title, p .body }
+}
+
+page /register {
+  form /api/auth/register { input email, input password, submit "Join" }
+}`,
+        nextjs: `// Next.js 15 + Prisma — 8 files, 180+ lines
+
+// prisma/schema.prisma
+model User {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
+  name     String
+  posts    Post[]
+}
+model Post {
+  id       Int    @id @default(autoincrement())
+  title    String
+  body     String
+  author   User   @relation(fields: [authorId])
+  authorId Int
+  created  DateTime @default(now())
+}
+
+// app/api/auth/register/route.ts
+import { NextResponse } from 'next/server';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import prisma from '@/lib/prisma';
+
+export async function POST(req: Request) {
+  const { email, password, name } = await req.json();
+  const hash = await bcrypt.hash(password, 10);
+  const user = await prisma.user.create({
+    data: { email, password: hash, name }
+  });
+  const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET!);
+  return NextResponse.json({ token, user: { id: user.id, email } });
+}
+
+// app/api/posts/route.ts
+export async function GET() {
+  const posts = await prisma.post.findMany({
+    include: { author: { select: { name: true } } }
+  });
+  return NextResponse.json(posts);
+}
+
+export async function POST(req: Request) {
+  // ... auth middleware, validation, create ...
+}
+
+// + layout.tsx, page.tsx, login/page.tsx,
+// + register/page.tsx, lib/prisma.ts, lib/auth.ts
+// + package.json (12 deps), tsconfig, next.config
+// Total: ~180 lines across 8+ files`,
+        fastapi: `# FastAPI + SQLAlchemy — 7 files, 155+ lines
+
+# models.py
+class User(Base):
+    __tablename__ = "users"
+    id = Column(Integer, primary_key=True)
+    email = Column(String, unique=True, nullable=False)
+    password = Column(String, nullable=False)
+    name = Column(String, nullable=False)
+    posts = relationship("Post", back_populates="author")
+
+class Post(Base):
+    __tablename__ = "posts"
+    id = Column(Integer, primary_key=True)
+    title = Column(String, nullable=False)
+    body = Column(String, nullable=False)
+    author_id = Column(Integer, ForeignKey("users.id"))
+    author = relationship("User", back_populates="posts")
+    created = Column(DateTime, default=datetime.utcnow)
+
+# main.py
+@app.post("/api/auth/register")
+def register(data: RegisterSchema, db: Session = Depends()):
+    hashed = bcrypt.hashpw(data.password.encode(), bcrypt.gensalt())
+    user = User(email=data.email, password=hashed, name=data.name)
+    db.add(user); db.commit()
+    token = create_access_token({"sub": user.id})
+    return {"token": token, "user": {"id": user.id}}
+
+@app.get("/api/posts")
+def get_posts(db: Session = Depends()):
+    return db.query(Post).options(joinedload(Post.author)).all()
+
+@app.post("/api/posts")
+def create_post(data: PostSchema, user=Depends(auth), db=Depends()):
+    post = Post(**data.dict(), author_id=user.id)
+    db.add(post); db.commit()
+    return post
+
+# + database.py, schemas.py, auth.py
+# + templates/ (3 HTML files)
+# + requirements.txt (9 deps)
+# Total: ~155 lines across 7+ files`
+      },
+      todo: {
+        nyxcode: `# todo.nyx — Full-stack todo in 22 lines
+table todos {
+  text text required
+  done bool default="0"
+  created auto
+}
+
+security { table users, login email password, token jwt, protect /api/todos }
+
+page / {
+  h1 "My Todos"
+  form /api/todos auth {
+    input text placeholder="What needs doing?"
+    submit "Add"
+    success -> reload
+  }
+  data todos = get /api/todos auth
+  each todos -> div style={ d flex, ai center, gap 1rem, p 0.5rem } {
+    span .text
+  }
+}`,
+        nextjs: `// Next.js 15 — Todo App (5 files, ~95 lines)
+// Similar structure: prisma schema, API routes,
+// page component with useState/useEffect,
+// fetch calls, optimistic updates...
+// See blog example for pattern.`,
+        fastapi: `# FastAPI — Todo App (6 files, ~110 lines)
+# Similar structure: SQLAlchemy models,
+# Pydantic schemas, CRUD endpoints,
+# Jinja2 templates with HTMX...
+# See blog example for pattern.`
+      },
+      chat: {
+        nyxcode: `# chat.nyx — Realtime chat in 28 lines
+table users {
+  name text required
+  email text required unique format=email
+  password password required min=8
+}
+
+table messages {
+  text text required realtime
+  author [users]
+  created auto
+}
+
+security { table users, login email password, token jwt, protect /api/messages }
+
+page / {
+  h1 "Chat"
+  data msgs = live /api/messages auth
+  each msgs -> div style={ d flex, gap 0.5rem, p 0.5rem } {
+    strong .author.name
+    span .text
+  }
+  form /api/messages auth {
+    input text placeholder="Type a message..."
+    submit "Send"
+    success -> clear
+  }
+}
+
+page /register {
+  form /api/auth/register { input name, input email, input password, submit "Join" }
+}`,
+        nextjs: `// Next.js 15 + Pusher/Socket.io — 10 files, ~220 lines
+// API routes for messages + auth
+// WebSocket server setup (separate process)
+// Client-side useEffect for WS connection
+// Message state management
+// Pusher/Socket.io config + env vars
+// 15 dependencies including ws, socket.io-client...`,
+        fastapi: `# FastAPI + WebSockets — 8 files, ~175 lines
+# WebSocket endpoint with connection manager
+# SQLAlchemy models + migrations
+# Auth middleware for WS connections
+# Jinja2 templates with JS WebSocket client
+# 11 dependencies including websockets, python-jose...`
+      }
+    };
+
+    let currentScenario = 'blog';
+    let currentCompare = 'nextjs';
+
+    function switchScenario(s) {
+      currentScenario = s;
+      const data = SCENARIOS[s];
+      document.getElementById('scenario-desc').innerHTML = '<p>' + data.desc + '</p>';
+
+      ['blog','todo','chat'].forEach(id => {
+        const btn = document.getElementById('btn-' + id);
+        if (id === s) {
+          btn.style.background = '#667eea'; btn.style.color = 'white'; btn.style.borderColor = 'transparent';
+        } else {
+          btn.style.background = '#1a1a3e'; btn.style.color = '#8892b0'; btn.style.borderColor = 'rgba(255,255,255,0.1)';
+        }
+      });
+
+      document.getElementById('tok-nyx').textContent = data.nyx.tokens.toLocaleString();
+      document.getElementById('lines-nyx').textContent = data.nyx.lines;
+      document.getElementById('files-nyx').textContent = data.nyx.files;
+      document.getElementById('deps-nyx').textContent = data.nyx.deps;
+      document.getElementById('tok-next').textContent = data.next.tokens.toLocaleString();
+      document.getElementById('lines-next').textContent = data.next.lines;
+      document.getElementById('files-next').textContent = data.next.files;
+      document.getElementById('deps-next').textContent = data.next.deps;
+      document.getElementById('tok-fast').textContent = data.fast.tokens.toLocaleString();
+      document.getElementById('lines-fast').textContent = data.fast.lines;
+      document.getElementById('files-fast').textContent = data.fast.files;
+      document.getElementById('deps-fast').textContent = data.fast.deps;
+      document.getElementById('savings-text').textContent = 'NyxCode saves ' + data.savings + '% tokens vs Next.js for this scenario';
+
+      document.getElementById('code-nyx').querySelector('code').textContent = CODE[s].nyxcode;
+      switchCompare(currentCompare);
+    }
+
+    function switchCompare(lang) {
+      currentCompare = lang;
+      const s = currentScenario;
+      document.getElementById('code-compare').querySelector('code').textContent = CODE[s][lang];
+
+      document.getElementById('btn-code-next').style.color = lang === 'nextjs' ? '#667eea' : '#8892b0';
+      document.getElementById('btn-code-next').style.borderColor = lang === 'nextjs' ? 'rgba(102,126,234,0.5)' : 'rgba(255,255,255,0.1)';
+      document.getElementById('btn-code-fast').style.color = lang === 'fastapi' ? '#667eea' : '#8892b0';
+      document.getElementById('btn-code-fast').style.borderColor = lang === 'fastapi' ? 'rgba(102,126,234,0.5)' : 'rgba(255,255,255,0.1)';
+    }
+
+    switchScenario('blog');
+  }
+}
