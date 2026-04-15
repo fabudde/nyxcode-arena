@@ -135,11 +135,11 @@ page / {
     .tree-list { list-style none, ff "JetBrains Mono, monospace", fs 0.8rem }
     .tree-list li { p 0.2rem 0, c #8888aa, ws pre }
     .bar-title { ta center, fs 1.3rem, fw 700, mb 2rem }
-    .bar-track { h 32px, r 8px, bg rgba(255,255,255,0.05), of hidden, pos relative }
+    .bar-track { h 32px, r 8px, bg rgba(255,255,255,0.05), of visible, pos relative }
     .bar-fill { h 100%, r 8px, tr width 1.5s cubic-bezier(0.22, 1, 0.36, 1), pos relative }
     .nyx-fill { bg linear-gradient(135deg, #667eea, #00d4ff) }
     .other-fill { bg rgba(255,255,255,0.1) }
-    .bar-label { pos absolute, r 8px, t 50%, tf translateY(-50%), fs 0.7rem, fw 700, ff "JetBrains Mono, monospace", c rgba(255,255,255,0.8) }
+    .bar-label { pos absolute, r -8px, t 50%, tf translate(100%, -50%), fs 0.7rem, fw 700, ff "JetBrains Mono, monospace", c rgba(255,255,255,0.6), ws nowrap }
     .how-grid { d grid, gtc 1fr 1fr 1fr, gg 1.5rem, mt 2rem }
     .how-card { bg #111128, r 16px, p 2rem, ta center, border 1px solid rgba(255,255,255,0.06), tr all 0.3s }
     .how-card:hover { tf translateY(-4px), bc rgba(102,126,234,0.2), shadow 0 4px 24px rgba(0,0,0,0.3) }
