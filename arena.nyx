@@ -98,27 +98,27 @@ page / {
   head "<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>"
   head "<link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap' rel='stylesheet'>"
   head "<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css'>"
-  head "<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js' defer></script>"
+  head "<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js' defer></script><script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js' defer></script><script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js' defer></script>"
   head "<style>@media(max-width:900px){.metrics{grid-template-columns:1fr 1fr!important}.code-grid{grid-template-columns:1fr!important}.tree-grid{grid-template-columns:1fr!important}}@media(max-width:768px){.how-grid{grid-template-columns:1fr!important}.hero-sec{padding:4rem 0 2rem!important}.hero-stats{gap:1.5rem!important}.stat-number{font-size:2rem!important}h1{font-size:2.5rem!important}nav .nav-links{display:none!important}}@media(max-width:500px){.metrics{grid-template-columns:1fr!important}.hero-sec h1{font-size:2rem!important}}</style>"
 
   style {
     .gradient-text { bg linear-gradient(135deg, #667eea, #00d4ff), -webkit-background-clip text, -webkit-text-fill-color transparent, background-clip text }
-    .stat-number { fs 2.5rem, fw 900, lh 1, bg linear-gradient(135deg, #667eea, #00d4ff), -webkit-background-clip text, -webkit-text-fill-color transparent, background-clip text }
-    .stat-label { fs 0.85rem, c #8888aa, mt 0.25rem, fw 500 }
+    .stat-number { fs 3rem, fw 900, lh 1, mb 0.25rem, bg linear-gradient(135deg, #667eea, #00d4ff), -webkit-background-clip text, -webkit-text-fill-color transparent, background-clip text }
+    .stat-label { fs 0.85rem, c #8888aa, mt 0.4rem, fw 500, ws nowrap }
     .section-title { ta center, fs 2rem, fw 800, mb 0.75rem }
     .section-sub { ta center, c #8888aa, fs 1.05rem, mb 2.5rem }
     .tab { p 0.7rem 1.5rem, r 8px, bg rgba(255,255,255,0.03), c #8888aa, border 1px solid rgba(255,255,255,0.08), cur pointer, fs 0.9rem, fw 600, ff inherit, tr all 0.2s }
     .tab:hover { bg rgba(102,126,234,0.08), bc rgba(102,126,234,0.2), c #e0e0f0 }
     .tab.active { bg rgba(102,126,234,0.15), bc #667eea, c #e0e0f0 }
-    .metrics { d grid, gtc 1fr 1fr 1fr 1fr, gg 1rem, mb 3rem }
+    .metrics { d grid, gtc repeat(4, 1fr), gg 1.25rem, mb 3rem }
     .metric-bar { pos absolute, t 0, l 0, w 100%, h 2px, bg linear-gradient(135deg, #667eea, #00d4ff) }
     .metric-top { fs 0.75rem, fw 700, tt uppercase, ls 0.08em, c #555577, mb 0.5rem }
-    .metric-num { fs 1.5rem, fw 800, ff "JetBrains Mono, monospace" }
+    .metric-num { fs 1.6rem, fw 800, ff "JetBrains Mono, monospace", letter-spacing -0.02em }
     .nyx-c { c #00d4ff }
     .other-c { c #8888aa }
     .metric-lang { fs 0.7rem, c #555577, mt 0.15rem }
     .metric-save { mt 0.75rem, pt 0.75rem, border-top 1px solid rgba(255,255,255,0.05) }
-    .save-badge { d inline-flex, ai center, gg 0.3rem, p 0.2rem 0.6rem, r 999px, fs 0.75rem, fw 700, ff "JetBrains Mono, monospace", bg rgba(34,197,94,0.1), c #22c55e, border 1px solid rgba(34,197,94,0.2) }
+    .save-badge { d inline-flex, ai center, gg 0.3rem, p 0.25rem 0.75rem, r 999px, fs 0.78rem, fw 700, ff "JetBrains Mono, monospace", bg rgba(34,197,94,0.12), c #22c55e, border 1px solid rgba(34,197,94,0.25) }
     .code-grid { d grid, gtc 1fr 1fr, gg 1.5rem, mb 3rem }
     .panel-head { d flex, ai center, jc space-between, p 0.85rem 1.25rem, bg rgba(255,255,255,0.02), border-bottom 1px solid rgba(255,255,255,0.05) }
     .lang-name { d flex, ai center, gg 0.5rem, fw 700, fs 0.9rem }
@@ -159,7 +159,7 @@ page / {
     }
     .metric-card-wrap:hover { transform translateY(-4px), box-shadow 0 8px 30px rgba(102,126,234,0.15), border-color rgba(102,126,234,0.3), transition all 0.3s }
     .metric-card-wrap { transition all 0.3s ease }
-    .hero-stats > div { animation fadeInUp 0.6s ease both }
+    .hero-stats > div { animation fadeInUp 0.6s ease both, min-width 100px }
     .hero-stats > div:nth-child(2) { animation-delay 0.1s }
     .hero-stats > div:nth-child(3) { animation-delay 0.2s }
     .hero-stats > div:nth-child(4) { animation-delay 0.3s }
@@ -173,9 +173,9 @@ page / {
     .nyx-bdr { animation glow-pulse 3s ease-in-out infinite }
   }
 
-  section class="hero-sec" style={ ta center, p 6rem 0 4rem, pos relative, z 1 } {
+  section class="hero-sec" style={ ta center, p 7rem 0 5rem, pos relative, z 1 } {
     div style={ mw 1200px, mx auto, p 0 2rem } {
-      div style={ d inline-flex, ai center, gg 0.5rem, p 0.4rem 1rem, r 999px, bg rgba(102,126,234,0.1), c #667eea, border 1px solid rgba(102,126,234,0.2), fs 0.85rem, fw 600, mb 1.5rem } {
+      div style={ d inline-flex, ai center, gg 0.5rem, p 0.5rem 1.2rem, r 999px, bg rgba(102,126,234,0.12), c #667eea, border 1px solid rgba(102,126,234,0.25), fs 0.85rem, fw 600, mb 2rem, animation fadeInUp 0.5s ease both } {
         text "⚡ Real benchmarks, real code"
       }
       h1 style={ fs 3.5rem, fw 900, lh 1.1, mb 1.5rem, animation fadeInUp 0.8s ease both } {
@@ -185,7 +185,7 @@ page / {
         text "compare?"
       }
       p "Side-by-side comparison of the same full-stack apps written in NyxCode, Next.js, and FastAPI. Every number measured, every line counted." style={ fs 1.2rem, c #8888aa, mw 600px, mx auto, mb 2.5rem, lh 1.7, animation fadeInUp 0.8s ease 0.15s both }
-      div class="hero-stats" flex=row center style={ gg 3rem, fw wrap } {
+      div class="hero-stats" flex=row center style={ gg 4rem, fw wrap, mt 2rem } {
         div style={ ta center } {
           div class="stat-number" id="ct-tok" { text "0%" }
           div class="stat-label" { text "fewer tokens" }
@@ -361,6 +361,11 @@ page / {
     }
 
     render('blog');render('todo');render('chat');
+    window.addEventListener('load',function(){
+      if(typeof hljs!=='undefined'){
+        document.querySelectorAll('pre code').forEach(function(c){hljs.highlightElement(c);});
+      }
+    });
     anim('ct-tok',48,'%');anim('ct-fil',83,'%');anim('ct-dep',100,'%');
   }
 }
