@@ -99,7 +99,7 @@ page / {
   head "<link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap' rel='stylesheet'>"
   head "<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css'>"
   head "<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js' defer></script>"
-  head "<style>@media(max-width:900px){.metrics{grid-template-columns:1fr 1fr!important}.code-grid{grid-template-columns:1fr!important}.tree-grid{grid-template-columns:1fr!important}}@media(max-width:768px){.how-grid{grid-template-columns:1fr!important}.hero-sec{padding:4rem 0 2rem!important}.hero-stats{gap:1.5rem!important}.stat-number{font-size:2rem!important}}@media(max-width:500px){.metrics{grid-template-columns:1fr!important}}</style>"
+  head "<style>@media(max-width:900px){.metrics{grid-template-columns:1fr 1fr!important}.code-grid{grid-template-columns:1fr!important}.tree-grid{grid-template-columns:1fr!important}}@media(max-width:768px){.how-grid{grid-template-columns:1fr!important}.hero-sec{padding:4rem 0 2rem!important}.hero-stats{gap:1.5rem!important}.stat-number{font-size:2rem!important}h1{font-size:2.5rem!important}nav .nav-links{display:none!important}}@media(max-width:500px){.metrics{grid-template-columns:1fr!important}.hero-sec h1{font-size:2rem!important}}</style>"
 
   style {
     .gradient-text { bg linear-gradient(135deg, #667eea, #00d4ff), -webkit-background-clip text, -webkit-text-fill-color transparent, background-clip text }
@@ -149,6 +149,28 @@ page / {
       from { opacity 0, transform translateY(20px) }
       to { opacity 1, transform translateY(0) }
     }
+    @keyframes glow-pulse {
+      0%, 100% { box-shadow 0 0 20px rgba(102,126,234,0.1) }
+      50% { box-shadow 0 0 40px rgba(102,126,234,0.2) }
+    }
+    @keyframes float {
+      0%, 100% { transform translateY(0) }
+      50% { transform translateY(-6px) }
+    }
+    .metric-card-wrap:hover { transform translateY(-4px), box-shadow 0 8px 30px rgba(102,126,234,0.15), border-color rgba(102,126,234,0.3), transition all 0.3s }
+    .metric-card-wrap { transition all 0.3s ease }
+    .hero-stats > div { animation fadeInUp 0.6s ease both }
+    .hero-stats > div:nth-child(2) { animation-delay 0.1s }
+    .hero-stats > div:nth-child(3) { animation-delay 0.2s }
+    .hero-stats > div:nth-child(4) { animation-delay 0.3s }
+    .tab:active { transform scale(0.97) }
+    .code-body::-webkit-scrollbar { w 6px }
+    .code-body::-webkit-scrollbar-track { bg transparent }
+    .code-body::-webkit-scrollbar-thumb { bg rgba(102,126,234,0.3), r 3px }
+    .code-body::-webkit-scrollbar-thumb:hover { bg rgba(102,126,234,0.5) }
+    nav a { transition color 0.2s }
+    nav a:hover { c #00d4ff, td none }
+    .nyx-bdr { animation glow-pulse 3s ease-in-out infinite }
   }
 
   section class="hero-sec" style={ ta center, p 6rem 0 4rem, pos relative, z 1 } {
@@ -156,13 +178,13 @@ page / {
       div style={ d inline-flex, ai center, gg 0.5rem, p 0.4rem 1rem, r 999px, bg rgba(102,126,234,0.1), c #667eea, border 1px solid rgba(102,126,234,0.2), fs 0.85rem, fw 600, mb 1.5rem } {
         text "⚡ Real benchmarks, real code"
       }
-      h1 style={ fs 3.5rem, fw 900, lh 1.1, mb 1.5rem } {
+      h1 style={ fs 3.5rem, fw 900, lh 1.1, mb 1.5rem, animation fadeInUp 0.8s ease both } {
         text "How does "
         span "NyxCode" class="gradient-text"
         br
         text "compare?"
       }
-      p "Side-by-side comparison of the same full-stack apps written in NyxCode, Next.js, and FastAPI. Every number measured, every line counted." style={ fs 1.2rem, c #8888aa, mw 600px, mx auto, mb 2.5rem, lh 1.7 }
+      p "Side-by-side comparison of the same full-stack apps written in NyxCode, Next.js, and FastAPI. Every number measured, every line counted." style={ fs 1.2rem, c #8888aa, mw 600px, mx auto, mb 2.5rem, lh 1.7, animation fadeInUp 0.8s ease 0.15s both }
       div class="hero-stats" flex=row center style={ gg 3rem, fw wrap } {
         div style={ ta center } {
           div class="stat-number" id="ct-tok" { text "0%" }
