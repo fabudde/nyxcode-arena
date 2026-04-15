@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NyxCode Arena — AI Code Generation Benchmark</title>
+  <meta name="description" content="Compare NyxCode vs Next.js vs FastAPI. See how NyxCode uses 48% fewer tokens for the same full-stack apps. Real benchmarks, real code.">
+  <meta property="og:title" content="NyxCode Arena — AI Code Generation Benchmark">
+  <meta property="og:description" content="Side-by-side comparison: NyxCode vs Next.js vs FastAPI. 48% fewer tokens. Real benchmarks.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <span style="font-size: 1.6rem;">🦞</span>
+        <span class="logo-text">NyxCode</span>
+        <span class="logo-badge">Arena</span>
+      </a>
+      <div class="header-links">
+        <a href="#benchmarks">Benchmarks</a>
+        <a href="#methodology">Methodology</a>
+        <a href="https://github.com/fabudde/nyxcode-arena" class="btn-github">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-tag fade-in">⚡ Real benchmarks, real code</div>
+      <h1 class="fade-in fade-in-delay-1">
+        How does <span class="gradient">NyxCode</span><br>
+        compare?
+      </h1>
+      <p class="fade-in fade-in-delay-2">
+        Side-by-side comparison of the same full-stack apps written in NyxCode, Next.js, and FastAPI. 
+        Every number measured, every line counted.
+      </p>
+      <div class="hero-stats fade-in fade-in-delay-3">
+        <div class="hero-stat">
+          <div class="hero-stat-number animated" data-target="48" data-suffix="%">0%</div>
+          <div class="hero-stat-label">fewer tokens</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number animated" data-target="83" data-suffix="%">0%</div>
+          <div class="hero-stat-label">fewer files</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number animated" data-target="100" data-suffix="%">0%</div>
+          <div class="hero-stat-label">fewer dependencies</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number" style="background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:2.5rem;font-weight:900;">1</div>
+          <div class="hero-stat-label">file. That's it.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENCHMARKS -->
+  <section id="benchmarks" class="scenario-section">
+    <div class="container">
+      <h2 class="section-title">The Benchmarks</h2>
+      <p class="section-subtitle">Same features. Same functionality. Dramatically different token counts.</p>
+
+      <div class="scenario-tabs">
+        <button class="scenario-tab active" data-scenario="blog">
+          <span class="tab-icon">📝</span> Blog with Auth
+        </button>
+        <button class="scenario-tab" data-scenario="todo">
+          <span class="tab-icon">✅</span> Todo App
+        </button>
+        <button class="scenario-tab" data-scenario="chat">
+          <span class="tab-icon">💬</span> Chat App
+        </button>
+      </div>
+
+      <div class="metrics-grid" id="metrics-grid"></div>
+      <div class="code-comparison" id="code-comparison"></div>
+      <div class="file-tree-grid" id="file-trees"></div>
+      <div class="savings-section" id="savings-bars"></div>
+    </div>
+  </section>
+
+  <!-- METHODOLOGY -->
+  <section id="methodology" class="how-section">
+    <div class="container">
+      <h2 class="section-title">How We Measured</h2>
+      <p class="section-subtitle">Transparent methodology. No tricks.</p>
+
+      <div class="how-grid">
+        <div class="how-card fade-in">
+          <div class="how-icon">📏</div>
+          <h3>Token Counting</h3>
+          <p>All token counts use OpenAI's <strong>cl100k_base</strong> tokenizer (tiktoken). The same tokenizer used by GPT-4 and Claude for billing.</p>
+        </div>
+        <div class="how-card fade-in fade-in-delay-1">
+          <div class="how-icon">⚖️</div>
+          <h3>Fair Comparison</h3>
+          <p>Each scenario implements <strong>identical features</strong>. Same CRUD operations, same auth flow, same UI. Config files (package.json, tsconfig) are counted.</p>
+        </div>
+        <div class="how-card fade-in fade-in-delay-2">
+          <div class="how-icon">🔍</div>
+          <h3>Open Source</h3>
+          <p>All benchmark code is <a href="https://github.com/fabudde/nyxcode-arena" style="color:var(--cyan)">on GitHub</a>. Run the benchmarks yourself. File an issue if something's wrong.</p>
+        </div>
+      </div>
+
+      <div class="methodology">
+        <p>
+          <strong>Methodology:</strong> Lines of code counted with <code>wc -l</code> excluding blank lines and comments. 
+          Token counts via <code>tiktoken</code> (cl100k_base). Dependencies counted from package.json / requirements.txt. 
+          NyxCode v0.15.0 compared against Next.js 15 + Prisma ORM and Python FastAPI + SQLAlchemy. 
+          Blog benchmark tokens are measured values; Todo and Chat are estimated using measured efficiency ratios.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ship faster with <span style="background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">fewer tokens</span></h2>
+      <p>One file. Full-stack. Zero config. Start building.</p>
+      <div class="cta-buttons">
+        <a href="https://www.npmjs.com/package/@fabudde/nyxcode" class="btn-primary">
+          <span>📦</span> npm install @fabudde/nyxcode
+        </a>
+        <a href="https://github.com/fabudde/nyxcode" class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>
+        Built with 🦞 by <a href="https://heynyx.dev">Nyx</a> &amp; <a href="https://github.com/fabudde">Fabian</a>. 
+        NyxCode is <a href="https://github.com/fabudde/nyxcode">open source</a> (MIT).
+      </p>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="arena.js"></script>
+</body>
+</html>
